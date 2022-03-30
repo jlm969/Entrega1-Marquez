@@ -76,13 +76,13 @@ def clientes (request):
 
 
 def buscar_producto(request):
-
-    data = request.GET['id_producto']
+    data = request.GET.get('id_producto')
     error =""
     if data:
         try:
-           producto = Producto.objects.filter(id_producto=data)
-           return render(request, "apppedido/buscarProducto.html", {'producto':producto[0]}) 
+           producto = Producto.objects.get(id_producto=data)
+           return render(request, "apppedido/buscarProducto.html", {'producto':producto}) 
+           #return render(request, "apppedido/buscarProducto.html", {'producto':producto[0]}) 
         except Exception as exc:
             print(exc)
             error = "No existe el producto"
