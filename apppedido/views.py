@@ -81,10 +81,12 @@ def buscar_producto(request):
     if data:
         try:
            producto = Producto.objects.get(id_producto=data)
-           return render(request, "apppedido/buscarProducto.html", {'producto':producto}) 
+           return render(request, "apppedido/buscarProducto.html", {'page':producto})
+           #return render(request, "apppedido/buscarProducto.html", {'producto':producto}) 
            #return render(request, "apppedido/buscarProducto.html", {'producto':producto[0]}) 
         except Exception as exc:
             print(exc)
             error = "No existe el producto"
-    return render(request, "apppedido/buscarProducto.html", {"error": error}) #le paso una plantilla .html
+    return render(request, "apppedido/buscarProducto.html", {"page": error}) #le paso una plantilla .html        
+    #return render(request, "apppedido/buscarProducto.html", {"error": error}) #le paso una plantilla .html
 
